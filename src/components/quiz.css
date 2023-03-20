@@ -1,0 +1,356 @@
+.quiz_user {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#user {
+  font-size: 20px;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-left: 10px;
+  width: 200px;
+  background-color: rgb(232, 240, 254);
+  border: 1px solid black;
+}
+
+#user::placeholder {
+  font-size: 18px;
+  color: rgb(31, 27, 27);
+  opacity: 0.6;
+}
+
+.questions {
+  background-color: rgb(13, 77, 77);
+  max-width: 450px;
+  min-width: 350px;
+  height: fit-content;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.que_show {
+  visibility: visible;
+  animation-name: queShowing;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.que_show.triggered {
+  animation-name: queShowingTriggered;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.wrong_color {
+  animation-name: wrongAnswerColor;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  pointer-events: none;
+}
+
+.disableCorrectAnswerButton {
+  pointer-events: none;
+}
+
+#dropdown,
+#dropdown_options {
+  background-color: rgb(13, 77, 77);
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.pick_domain {
+  font-size: 20px;
+  color: white;
+}
+
+#dropdown_container {
+  display: flex;
+  justify-content: center;
+}
+
+#dropdown {
+  margin-left: 10px;
+}
+
+.optA,
+.optB,
+.optC,
+.optD {
+  background-color: rgb(13, 77, 77);
+  max-width: 450px;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.submit_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.next_que {
+  background-color: rgb(13, 77, 77);
+  max-width: 450px;
+  height: fit-content;
+  width: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.submit {
+  background-color: rgb(13, 35, 77);
+  max-width: 450px;
+  height: fit-content;
+  width: 134px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 1px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.optA:hover:not(:disabled),
+.optB:hover:not(:disabled),
+.optC:hover:not(:disabled),
+.optD:hover:not(:disabled) {
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.optA:disabled,
+.optB:disabled,
+.optC:disabled,
+.optD:disabled {
+  background-color: rgb(10, 100, 100);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#correct_que,
+#wrong_que {
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.update_correct {
+  transform: scale(1.5);
+  color: rgb(94, 223, 94);
+}
+
+.update_wrong {
+  transform: scale(1.5);
+  color: rgb(219, 25, 25);
+}
+
+.correct_answer {
+  background-color: red;
+}
+
+.next_que:hover:not(:disabled) {
+  cursor: pointer;
+  background-color: rgb(33, 202, 174);
+  color: black;
+}
+
+.submit:hover:not(:disabled) {
+  cursor: pointer;
+  background-color: rgb(44, 43, 148);
+  color: rgb(255, 255, 255);
+}
+
+.next_que:disabled {
+  background-color: rgb(10, 100, 100);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.next_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+  border-top: 1px solid rgb(228, 208, 208);
+}
+
+.time_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quiz_time {
+  font-size: 20px;
+}
+
+.standing_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 460px;
+  min-height: fit-content;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(13, 77, 77);
+  padding-top: 2px;
+  overflow: auto;
+  margin-top: 50px;
+}
+
+.standing_title span {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: bisque;
+  color: black;
+}
+
+.standing_title {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 40px 100px 170px 60px 80px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+
+.standings_header {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: serif;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+.standing_content {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 40px 100px 170px 60px 80px;
+  font-size: 18px;
+  border-bottom: 1px solid rgb(247, 3, 3);
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.standing_content span {
+  text-align: left;
+  padding-left: 5px;
+  border-right: 1px solid red;
+}
+
+.standing_content span:nth-child(5) {
+  border-right: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0366e7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #79e712;
+  border-radius: 10px;
+}
+
+@keyframes queShowing {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes queShowingTriggered {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wrongAnswerColor {
+  0% {
+    background-color: #880d0d;
+  }
+  100% {
+    background-color: rgb(13, 77, 77);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .questions {
+    max-width: 380px;
+  }
+
+  .standing_container {
+    width: 380px;
+  }
+
+  .standing_title {
+    grid-template-columns: 40px 100px 170px 60px;
+    width: 375px;
+  }
+
+  .standing_title span:nth-child(5) {
+    display: none;
+  }
+
+  .standing_content {
+    grid-template-columns: 40px 100px 170px 60px;
+    width: 375px;
+  }
+
+  .standing_content span:nth-child(5) {
+    display: none;
+  }
+
+  .standing_content span:nth-child(4) {
+    border-right: none;
+  }
+}
