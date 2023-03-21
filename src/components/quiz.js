@@ -1,13 +1,19 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./quiz.css";
 import { getQuestions, getCategories } from "../services/api";
 import he from "he";
-import { AppContext } from "../context/context";
 
 const Quiz = () => {
-  const [state, setState] = useContext(AppContext);
-
+  const [state, setState] = useState({
+    position: "-",
+    userName: "-",
+    category: "-",
+    score: "-",
+    queNo: "-",
+    time: "-",
+  });
   const timerQuiz = useRef(null);
+  const titleRef = useRef(null);
 
   const [categories, setCategories] = useState([]);
   const [selectedDomain, setSelectedDomain] = useState("");
@@ -24,6 +30,20 @@ const Quiz = () => {
   const [trigger, setTrigger] = useState(true);
   const [entry, setEntry] = useState([]);
   const [quizResults, setQuizResults] = useState([]);
+
+  useEffect(() => {
+    const text = titleRef.current;
+    const letters = text.innerText.split("");
+    text.innerText = "";
+
+    for (let i = 0; i < letters.length; i++) {
+      const span = document.createElement("span");
+      span.innerText = letters[i];
+      span.style.animationDelay = i * 0.05 + "s";
+      text.appendChild(span);
+    }
+    text.style.display = "inline-block";
+  }, []);
 
   useEffect(() => {
     selectedDomain &&
@@ -220,6 +240,13 @@ const Quiz = () => {
 
   return (
     <div>
+      <div>
+        <div className="title_container">
+          <h1 className="title" ref={titleRef}>
+            TRAIN YOUR KNOWLEDGE!
+          </h1>
+        </div>
+      </div>
       <div className="quiz_user">
         Your Name:
         <input
