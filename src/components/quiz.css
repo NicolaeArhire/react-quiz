@@ -193,6 +193,11 @@
   color: whitesmoke;
 }
 
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .optA:hover:not(:disabled),
 .optB:hover:not(:disabled),
 .optC:hover:not(:disabled),
@@ -302,15 +307,43 @@
   padding-left: 5px;
 }
 
+.standings_intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+}
+
 .standings_header {
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  padding-left: 10px;
   height: 35px;
-  margin-bottom: 10px;
-  margin-top: 10px;
   font-family: serif;
   font-weight: bold;
-  border-bottom: 1px solid white;
+  font-size: 25px;
+}
+
+.delete_standing {
+  width: 80px;
+  height: fit-content;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgb(13, 35, 77);
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.delete_standing:hover:not(:disabled) {
+  background-color: rgb(44, 43, 148);
+}
+
+.delete_standing:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .standing_content {

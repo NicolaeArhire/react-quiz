@@ -116,7 +116,7 @@ const Quiz = () => {
       optD.classList.remove("wrong_color");
       optD.classList.add("disableCorrectAnswerButton");
     }
-  }, [queNo, selectedDomain, correctAnswers, wrongAnswers]);
+  }, [queNo, correctAnswers, wrongAnswers]);
 
   useEffect(() => {
     const optA = document.querySelector(".optA");
@@ -160,7 +160,12 @@ const Quiz = () => {
     setCorrectAnswers(0);
     setWrongAnswers(0);
     setTrigger(!trigger);
+    clearInterval(timerQuiz.current);
     stopWatch();
+    document.querySelector(".optA").disabled = false;
+    document.querySelector(".optB").disabled = false;
+    document.querySelector(".optC").disabled = false;
+    document.querySelector(".optD").disabled = false;
   }
 
   function handleAnswer1() {
@@ -232,11 +237,21 @@ const Quiz = () => {
       userName: state.userName,
       category: state.category,
       score: state.score,
-      queNo: state.queNo,
+      queNo: correctAnswers + wrongAnswers === 20 ? state.queNo + 1 : state.queNo,
       time: state.time,
     };
     setQuizResults((prevState) => [...prevState, newQuizResult]);
+    document.querySelector(".optA").disabled = true;
+    document.querySelector(".optB").disabled = true;
+    document.querySelector(".optC").disabled = true;
+    document.querySelector(".optD").disabled = true;
   }
+
+  function handleDeleteStanding() {
+    setQuizResults((prevState) => prevState.slice(0, -1));
+  }
+
+  console.log(quizResults.length);
 
   return (
     <div>
@@ -332,7 +347,11 @@ const Quiz = () => {
             <br />
           </div>
           <div className="submit_container">
-            <button className="submit" onClick={submitQuiz}>
+            <button
+              className="submit"
+              onClick={submitQuiz}
+              disabled={correctAnswers + wrongAnswers === 0}
+            >
               Submit Quiz
             </button>
             <button
@@ -347,7 +366,16 @@ const Quiz = () => {
         <div></div>
       </div>
       <div className="standing_container">
-        <span className="standings_header">STANDINGS</span>
+        <div className="standings_intro">
+          <span className="standings_header">STANDINGS</span>
+          <button
+            className="delete_standing"
+            onClick={handleDeleteStanding}
+            disabled={quizResults.length === 0}
+          >
+            Delete
+          </button>
+        </div>
         <div className="standing_title">
           <span>#.</span>
           <span>User</span>
